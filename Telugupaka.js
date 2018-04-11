@@ -10,7 +10,7 @@ const rl = readline.createInterface({
 //ask for movie name
 rl.question('Please enter movie name ', (movie_name) => {
     ///getting Movie name from user
-    let Movie = "+"+movie_name+"+"
+    let Movie = "+"+movie_name+"+";
     console.log(`You entered ${Movie}`);
     ///check if movie exist
     //var url = "https://duckduckgo.com/?q="+Movie+"site%3Atelugupalaka.com"
