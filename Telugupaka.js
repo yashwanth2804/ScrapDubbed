@@ -31,7 +31,27 @@ rl.question('Please enter movie name ', (movie_name) => {
                 process.exit();
             }else{
                 //// rest code
-                console.log("rest of logic");
+              console.log(link);
+              await page.close();
+              const Telugupalaka_page = await browser.newPage()
+            //  await Telugupalaka_page.setRequestInterceptionEnabled(true);
+            const Telugupalaka_page_response =   await Telugupalaka_page.goto(link,{waitUntil: 'networkidle2'});
+            console.log(Telugupalaka_page_response.headers);
+              //
+              // //await page.setRequestInterceptionEnabled(true);
+              //  Telugupalaka_page.on('request', request => {
+              //         //request.continue();
+              //         console.log("URL: " + request.url);
+              //
+              //     });
+              // Telugupalaka_page.on('request', request => {
+              //        //request.continue();
+              //        console.log("URL: " + request.url);
+              //        console.log("METHOD: " + request.method);
+              //        //console.log("HEADERS:" + JSON.stringify([...request.headers]) + "\n");
+              //    });
+
+
             }
 
                   await browser.close()
