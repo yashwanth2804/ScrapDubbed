@@ -28,7 +28,7 @@ rl.question('Please enter movie name ', (movie_name) => {
       var link = hrefs[0];
      if (typeof link == "undefined") {
                 console.log("Movie with name "+movie_name+" not found");
-                process.exit();
+                process.exit(); 
             }else{
                 //// rest code
               console.log(link);
