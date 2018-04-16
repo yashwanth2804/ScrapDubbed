@@ -5,15 +5,89 @@ const puppeteer = require('puppeteer');
  var prompt1 = require('prompt');
 const readline = require('readline');
 
-
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
 
  global.MOvie="";
  global.ShrinkLinks="";
- prompt.start();
+ ///prompt.start();
  //console.log('Please Enter MOvie name:');
 
 
-    prompt.get(['MovieName'], function (err, result) {
+ rl.question('Please enter the Movie number : ', (MovieName) => {
+
+  MOvie =  MovieName;
+        MOvie= "+"+MOvie+"+";
+	   //
+	  puppeteer
+	  .launch({headless:false})
+	  .then(async browser => {
+
+
+		 //call to browser
+		 var url = "https://duckduckgo.com/?q=" + MOvie + "site%3Atelugupalaka.com";
+
+		///duckduck go
+	  DuckDuckGo(url,browser).
+		then( DuckDuckGoUrl => {
+
+			//console.log("returned url"+DuckDuckGoUrl);
+			TelugupalakaPage(DuckDuckGoUrl,browser)
+			.then( b => {
+
+				  var f =b;
+
+
+			   rl.question('Select an option : ', (answer2) => {
+
+					 var  selectedUrl = f[answer2].toString().split("->")[1];
+					//console.log(selectedUrl);
+
+					LinkSharenet(selectedUrl,browser).then( v => {
+
+							//console.log("Hashed code "+v);
+							var hashcode = revC(v);
+							OpenLoad(hashcode,browser).then( z => {
+								 console.log("https://openload.co/stream/"+z.trim());
+								 process.exit(1);
+							});
+
+
+				  });
+
+					rl.close();
+				});
+
+
+
+
+			});
+
+
+
+		})
+		;
+
+		////end duckduckgo and telugupalaka
+
+
+		});
+
+
+
+
+
+
+});
+
+
+
+
+
+
+    /* prompt.get(['MovieName'], function (err, result) {
 
         MOvie = result.MovieName.toString();
         MOvie= "+"+MOvie+"+";
@@ -35,6 +109,11 @@ const readline = require('readline');
 			.then( b => {
 
 				  var f =b;
+
+
+
+
+
 				  var  selectedUrl = f[1].toString().split("->")[1];
 				  //console.log(selectedUrl);
 
@@ -67,7 +146,7 @@ const readline = require('readline');
 
 
 	   prompt.stop();
- });
+ }); */
 
 
 	  async function DuckDuckGo(url,browser) {
@@ -75,10 +154,19 @@ const readline = require('readline');
 
     const page = await browser.newPage();
 
-    //  var url = "https://google.com"
+ await page.setRequestInterception(true);
+	page.on('request', (request) => {
+		if (['image'].indexOf(request.resourceType()) !== -1) {
+			request.abort();
+		} else {
+			request.continue();
+		}
+	});
+
+
     await page.goto(url,{timeout: 0});
     const hrefs = await page.$$eval('a.result__a', hrefs => hrefs.map((a) => {
-      return a.href
+      return a.href;
     }));
 
     var link = hrefs[0];
@@ -132,7 +220,9 @@ async function TelugupalakaPage(url,browser) {
 	));
 
 	var f = hrefs.filter(item => item);
-
+	let y=0;
+	 for(let g of f)
+		console.log("  "+(y++) + " "+ g);
 
     return f;
 
@@ -203,6 +293,8 @@ async function OpenLoad(url,browser) {
     //get the recV from scrapping
 
 		  const textContentID = await opage.evaluate(() => document.querySelector('#DtsBlkVFQx').textContent);
+		  browser.close();
+
 		return textContentID;
   } catch (err) {
     console.error(err);
