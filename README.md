@@ -35,5 +35,10 @@ use ```npm i puppeteer``` to download. But this will download latest build of ch
  
  ![Run](https://i.imgur.com/y4xteGr.png)
  
+ # In action :running:
  
+  
+  ![Gif](https://i.imgur.com/yWKYlCK.gif)
+ 
+ copy download url and paste in browser to download
  
