@@ -25,9 +25,12 @@ rl.question(':', (MovieName) => {
   puppeteer
     .launch({
         headless: true,
+        executablePath: "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe", ///provide your chrome path
         args: [
 
           '--safebrowsing-disable-auto-update',
+           "--proxy-server='direct://",
+		        "--proxy-bypass-list=*"
         ]
 
       }
