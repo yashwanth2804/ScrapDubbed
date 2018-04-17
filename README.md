@@ -1,7 +1,7 @@
 # ScrapDubbed
 A NodeJs tool to scrap the content download sites and provides the download URL with out any pop-up ads. please feel free to contribute.
 
-#About Telugupalaka
+# About Telugupalaka
 ----------
 Telugupalaka is a dubbed movies download portal,where one can find hollywood and bollywood dubbed movies in native Indian languages. 
 http://telugupalaka.com/
