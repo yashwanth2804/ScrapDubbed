@@ -83,7 +83,7 @@ rl.question(':', (MovieName) => {
                   //provide an option to download or view
 
                   var download_url = "https://openload.co/stream/" + z.trim();
-                  console.log(chalk.bgGreen.bold("Use this url to download the video ") + chalk.bgGreen.bold.underline(download_url));
+                  console.log(chalk.bgGreen.bold("Use this url to download the video ") +"\n"+ chalk.bgGreen.bold.underline(download_url));
 
                 });
 
@@ -187,7 +187,7 @@ async function TelugupalakaPage(url, browser) {
     var f = hrefs.filter(item => item);
     //console.log(f);
 
-    console.log(chalk.white.bgRed.bold.underline('option ') + chalk.yellow.bgBlue.bold.underline('content'.padStart(40)));
+    console.log("\n"+chalk.white.bgRed.bold.underline('option ') + chalk.yellow.bgBlue.bold.underline('content'.padStart(40)));
 
     let y = 0;
     for (let g of f)
