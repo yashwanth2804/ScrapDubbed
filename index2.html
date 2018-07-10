@@ -16,7 +16,7 @@
 
   <!-- Custom styles for this template -->
   <link href="index2_files/blog-post.css" rel="stylesheet">
-  <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> -->
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <!-- load jquery -->
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
   <script src="core.js"></script>
@@ -25,11 +25,17 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/6.7.3/video-js.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/6.7.3/video.js"></script>
 
+<!---load angular growl-->
+<link href="angular-growl.min.css" rel="stylesheet">
+<script src="angular-growl.js"></script>
+
 
 </head>
 
 <body ng-controller="scrpCtrl">
-
+		
+     
+  <div growl></div> 
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
@@ -69,22 +75,38 @@
 
         <!-- Title -->
         <h1 class="mt-4">Post Title</h1>
-        <video id="video1" width="700" controls>
-          <source ng-src="{{ vidurl }}"  type="video/mp4">
-          <source ng-src="{{ vidurl }}"  type="video/ogg"> Your browser does not support HTML5 video.
-        </video>
-
-        <video id="player" class="video-js vjs-big-play-centered vjs-dotskin" ></video> 
-         
+         <input type="hidden" id="neww1"   value="{{neww}}">
+         <video id="videoclip" width="700" height="400" controls="controls" poster="https://image.ibb.co/gKGMjy/scrapdubbed3.jpg" title="Video title">
+  <source id="mp4video" src="" type="video/mp4"  />
+ </video>
+ <button  class="btn btn-outline-info" id="videolink1" disabled>view</button>
+ <a class="btn btn-outline-info disabled" id="videolink1dwn" href="{{chgurl}}" download="download"  >download</a>
+ 
+ 
+ 
         <script>
-          var myVideo = document.getElementById("video1");
+		 
+          $(document).ready(function() {
+		    
+		  var videoID = 'videoclip';
+		var sourceID = 'mp4video';
+		
+		$('#videolink1').click(function(event) {  
+		console.log("video clicked");
+		var t = $("#neww1").val();
+		console.log("@@@@@@@@@@@"+t);
+		  $('#'+videoID).get(0).pause();
+						 $('#'+sourceID).attr('src', '');
+						$('#'+sourceID).attr('src', t);
+						$('#'+videoID).get(0).load();
+						 setTimeout(function() {
+						$('#'+videoID).get(0).play();
+					}, 10);
+		});			
+					
+  
+});
 
-          function playPause() {
-            if (myVideo.paused)
-              myVideo.play();
-            else
-              myVideo.pause();
-          } 
         </script>
           
       </div>
@@ -118,14 +140,7 @@
                   <button class="btn btn-outline-info" ng-click=linkSharenet(x.url)> {{x.name}} </button>
 
                 </div>
-                <!-- <ul class="list-unstyled mb-0"    >
-                  
-                  <button  ng-repeat="x in filters" class="btn btn-primary" ng-click="linkSharenet($index)"> {{ x.name}}</button>
-                  
-                  <!-- <li ng-click="linkSharenet({{x.url}})"  ng-repeat="x in filters" class="btn btn-secondary" >
-                    <a  >{{ x.name }} {{ x.url }}</a>
-                  </li>
-                   -->
+                 
                   </ul>  
 
 

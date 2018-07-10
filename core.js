@@ -1,4 +1,4 @@
-var Scrapapp = angular.module('scrap', []);
+var Scrapapp = angular.module('scrap', ['angular-growl']);
 
 
 // $scope.filters = [{
@@ -14,19 +14,32 @@ var Scrapapp = angular.module('scrap', []);
 // ];
 
 Scrapapp.controller('scrpCtrl',
-    ['$scope', '$http',
+    ['$scope', '$http','growl',
 
-        function ($scope, $http) {
+        function ($scope, $http,growl) {
+			
+			/* $scope.showWarning=function(){
+				growl.warning('This is a warning mesage.',{title:'Warning!'})
+				}; */
+			 $scope.addSpecialWarnMessage = function() {
+        growl.addWarnMessage("This adds a warn message");
+         
+    }
+			
             // default post header
             // $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
             $scope.data = {};
             $scope.count = 0;
-            $scope.filters ={};
+           
+			 var videoID = 'videoclip';
 
             $scope.clk = function () {
 
                 console.log("clicked");
-                var baseurl = "http://127.0.0.1:8001/search";
+				//clear all filters 
+				 $scope.filters ={};
+				
+                var baseurl = "http://192.168.0.8:8001/search";
                 var postObject = new Object();
                 postObject.MovieName = $scope.search;
                 
@@ -61,7 +74,7 @@ Scrapapp.controller('scrpCtrl',
 
                 console.log("Linkshare cliked"+link);
                 var postObject = new Object();
-                var baseurl = "http://127.0.0.1:8001/LinkSharenet";
+                var baseurl = "http://192.168.0.8:8001/LinkSharenet";
                 postObject.Link = link;
                 $http({
                     url: baseurl,
@@ -72,13 +85,40 @@ Scrapapp.controller('scrpCtrl',
                     },
 
                 }).then(function (data, status, headers, config) {
-                    console.log("url"+data.data);
-                    console.log(data);
-                    $scope.vidurl='';
+                     
+                   console.log("data is"+typeof(data.data));
+				   
+					if( data.data == "01" ){
+						console.log("error");
+					}
+				   else{
+					   $scope.vidurl='';
+					$scope.dwnurl ='';
                     $scope.vidurl=data.data+"?mime=true";
-
-                    var myVideo = document.getElementById("video1");
-                    myVideo.play();
+					$scope.dwnurl =data.data;
+					$scope.neww ="";
+                    
+					  var sourceID = 'mp4video';
+					   $scope.neww = $scope.vidurl;
+					console.log("final url"+ $scope.neww);	
+					
+					
+					var urlis = new URL($scope.neww);
+					var cnhgurl = "https://oload.download"+urlis.pathname;
+					$scope.chgurl= '';
+					$scope.chgurl= cnhgurl;
+					
+					document.getElementById("videolink1dwn").classList.remove('disabled');
+					document.getElementById('videolink1').disabled = false;
+					   
+				   }
+                    
+					 
+					   
+						 
+						
+					   
+  
 
                     // $scope.url=data.data.Link;
                     // myVideo.load();myVideo.play();
