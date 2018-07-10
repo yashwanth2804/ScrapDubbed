@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="scrap">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Blog Post - Start Bootstrap Template</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="index2_files/bootstrap.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="index2_files/blog-post.css" rel="stylesheet">
+  <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script> -->
+  <!-- load jquery -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
+  <script src="core.js"></script>
+
+  <!-- cdnjs -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/6.7.3/video-js.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/6.7.3/video.js"></script>
+
+
+</head>
+
+<body ng-controller="scrpCtrl">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Scrap Dubbed</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+
+      <!-- Post Content Column -->
+      <div class="col-lg-8">
+
+        <!-- Title -->
+        <h1 class="mt-4">Post Title</h1>
+        <video id="video1" width="700" controls>
+          <source ng-src="{{ vidurl }}"  type="video/mp4">
+          <source ng-src="{{ vidurl }}"  type="video/ogg"> Your browser does not support HTML5 video.
+        </video>
+
+        <video id="player" class="video-js vjs-big-play-centered vjs-dotskin" ></video> 
+         
+        <script>
+          var myVideo = document.getElementById("video1");
+
+          function playPause() {
+            if (myVideo.paused)
+              myVideo.play();
+            else
+              myVideo.pause();
+          } 
+        </script>
+          
+      </div>
+      
+      <!-- Sidebar Widgets Column -->
+      <div class="col-md-4">
+
+        <!-- Search Widget -->
+        <div class="card my-4">
+          <h5 class="card-header">Search</h5>
+          <div class="card-body">
+            <div class="input-group">
+              <input class="form-control" ng-model="search" placeholder="Search for..." type="text">
+              <span class="input-group-btn">
+                <button class="btn btn-secondary" ng-click="clk()" type="button">Go!</button>
+              </span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Categories Widget -->
+        <div class="card my-4">
+          <h5 class="card-header">Filter</h5>
+          <div class="card-body">
+            <div class="row">
+ 
+              <div class="col-lg-6">
+
+
+                <div ng-repeat="x in filters">
+                  <button class="btn btn-outline-info" ng-click=linkSharenet(x.url)> {{x.name}} </button>
+
+                </div>
+                <!-- <ul class="list-unstyled mb-0"    >
+                  
+                  <button  ng-repeat="x in filters" class="btn btn-primary" ng-click="linkSharenet($index)"> {{ x.name}}</button>
+                  
+                  <!-- <li ng-click="linkSharenet({{x.url}})"  ng-repeat="x in filters" class="btn btn-secondary" >
+                    <a  >{{ x.name }} {{ x.url }}</a>
+                  </li>
+                   -->
+                  </ul>  
+
+
+              </div>
+               
+
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Side Widget -->
+        <div class="card my-4">
+          <h5 class="card-header">Trending</h5>
+          <ul class="list-group">
+            <li class="list-group-item">Cras justo odio</li>
+            <li class="list-group-item">Dapibus ac facilisis in</li>
+            <li class="list-group-item">Morbi leo risus</li>
+            <li class="list-group-item">Porta ac consectetur ac</li>
+            <li class="list-group-item">Vestibulum at eros</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright © Your Website 2018</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="index2_files/jquery.js"></script>
+  <script src="index2_files/bootstrap.js"></script>
+
+
+
+
+</body>
+
+</html>
