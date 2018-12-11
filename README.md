@@ -25,7 +25,8 @@ To use the project you need to install NodeJs, choose basing on your OS and arch
 
 use ```npm i puppeteer``` to download. But this will download latest build of chromium of about 170mb.<br>
  **To skip the download, use this instead**  <br>
-  ```npm config set PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true ``` (*make sure you run this command before the following command*)  <br>
+ 
+  ```export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true ``` (*make sure you run this command before the following command*)  <br>
   ```npm i puppeteer chalk ora```<br>
 
  ![npm](https://i.imgur.com/AsFsZtB.png) 
