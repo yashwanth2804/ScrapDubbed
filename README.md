@@ -1,4 +1,4 @@
-# ScrapDubbed
+# ScrapDubbed(Not Working)
 A NodeJs tool to scrap the content download sites and provides the download URL with out any pop-up ads. please feel free to contribute.
 
 # About Telugupalaka
